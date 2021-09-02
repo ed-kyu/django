@@ -39,4 +39,9 @@ def update(request, pk):
 
 
 def delete(request, pk):
-    pass
+    article = Article.objects.get(pk=pk)
+    if request.method == "POST":
+        article.delete()
+        return redirect('articles:index')
+    else:
+        return redirect('articles:detail', article.pk)
