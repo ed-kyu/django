@@ -31,11 +31,19 @@ def detail(request, pk):
 
 
 def edit(request, pk):
-    pass
+    article = Article.objects.get(pk=pk)
+    article.title = request.POST.get('title')
+    article.content = request.POST.get('content')
+    article.save()
+    return redirect('articles:detail', article.pk)
 
 
 def update(request, pk):
-    pass
+    article = Article.objects.get(pk=pk)
+    context = {
+        'article': article,
+    }
+    return render(request, 'articles/edit.html', context)
 
 
 def delete(request, pk):
