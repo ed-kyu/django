@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+<hr>
 <h1>Home(index)</h1>
+<h3><a href="{% url 'articles:create' %}">New</a></h3>
+<hr>
 
-<ul>
 {% for article in articles %}
-<li>
-  <a href="{% url 'articles:detail' article.pk %}">{{ article.title }}  {{ article.content }}</a>
-</li>
+<h2>{{ article.pk }}</h2>
+<h2>{{ article.title }}</h2> 
+<a href="{% url 'articles:detail' article.pk %}">DETAIL</a>
+<hr>
 {% endfor %}
-</ul>
 
 {% endblock %}
