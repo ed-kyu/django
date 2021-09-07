@@ -10,7 +10,7 @@ def create(request):
         form = ArticleForm(request.POST)
         if form.is_valid():
             article = form.save()
-            redirect('articles:detail', article.pk)
+            return redirect('articles:detail', article.pk)
     else:
         form = ArticleForm()
     context = {
@@ -51,7 +51,7 @@ def update(request, pk):
         form = ArticleForm(request.POST, instance=article)
         if form.is_valid():
             article = form.save()
-            redirect('articles:detail', article.pk)
+            return redirect('articles:detail', article.pk)
     else:
         form = ArticleForm(instance=article)
 
