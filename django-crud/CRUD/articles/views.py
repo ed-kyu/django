@@ -20,7 +20,7 @@ def create(request):
     
 
 
-@require_http_methods(['GET', 'SAFE'])
+@require_safe
 def index(request):
     articles = Article.objects.order_by('-pk')
     context = {
