@@ -6,3 +6,4 @@
 ## django-crud
 - crud practice
 - movie관련 crud practice
+- auth기능 추가한 
