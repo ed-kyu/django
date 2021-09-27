@@ -4,10 +4,10 @@ from django.views.decorators.http import require_safe, require_POST, require_htt
 from .forms import ArticleForm
 # Create your views here.
 
-@require_http_methods(['GET', 'POST'])
+@require_http_methods(['GET', 'POST'])  # 2가지 경우에만 함수실행
 def create(request):
     if request.method == 'POST':
-        form = ArticleForm(request.POST)
+        form = ArticleForm(request.POST, request.FILES)
         if form.is_valid():
             article = form.save()
             return redirect('articles:detail', article.pk)
@@ -20,7 +20,7 @@ def create(request):
     
 
 
-@require_safe
+@require_safe  # POST 안들어오니까, db에 변경 요청없을 때 쓰면 됨
 def index(request):
     articles = Article.objects.order_by('-pk')
     context = {
@@ -30,13 +30,8 @@ def index(request):
 
 
 @require_safe
-def detail(request, pk):
-    # article = Article.objects.get(pk=pk)
-    # context = {
-    #     'article': article,
-    # }
-    # return render(request, 'articles/detail.html', context)
-    article = get_object_or_404(Article, pk=pk)
+def detail(request, article_pk):
+    article = get_object_or_404(Article, pk=article_pk)
     context = {
         'article': article,
     }
@@ -44,8 +39,8 @@ def detail(request, pk):
 
 
 @require_http_methods(['GET', 'POST'])
-def update(request, pk):
-    article = get_object_or_404(Article, pk=pk)
+def update(request, article_pk):
+    article = get_object_or_404(Article, pk=article_pk)
 
     if request.method == 'POST':
         form = ArticleForm(request.POST, instance=article)
@@ -63,7 +58,7 @@ def update(request, pk):
 
 
 @require_POST
-def delete(request, pk):
-    article = get_object_or_404(Article, pk=pk)
+def delete(request, article_pk):
+    article = get_object_or_404(Article, pk=article_pk)
     article.delete()
     return redirect('articles:index')

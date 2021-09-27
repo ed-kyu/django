@@ -1,16 +1,27 @@
 {% extends 'base.html' %}
+{% load static %}
+
 
 {% block content %}
+
+<img src="{% static 'articles/images/sample.jpg' %}" alt="alphonse elric">
+
 <hr>
 <h1>Home(index)</h1>
 <h3><a href="{% url 'articles:create' %}">New</a></h3>
 <hr>
 
 {% for article in articles %}
-<h2>{{ article.pk }}</h2>
-<h2>{{ article.title }}</h2> 
-<a href="{% url 'articles:detail' article.pk %}">DETAIL</a>
+<div>
+  <h2>{{ article.pk }}</h2>
+  <h2>{{ article.title }}</h2> 
+  <a href="{% url 'articles:detail' article.pk %}">[DETAIL]</a>
+</div>
+{% empty %}  
+<div>
+  No articles... YET (게시글 없을 때 출력)
+</div>
 <hr>
 {% endfor %}
 
-{% endblock %}
+{% endblock content %}

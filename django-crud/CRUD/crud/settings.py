@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django_extensions',
 
     'articles',
+
+    'bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -125,8 +127,9 @@ STATIC_URL = '/static/'
 # STATIC_ROOT = BASE_DIR / 'staticfiles' # 배포시 사용
 STATICFILES_DIRS = [BASE_DIR / 'static', ]
 
-MEDIA_ROOT = BASE_DIR / 'media'
-MEDIA_URL = '/media/'
+# Media Files
+MEDIA_URL = '/media/'  # 꼭 media일 필요 X
+MEDIA_ROOT = BASE_DIR / 'media'  # 여기에 media파일을 모으겠다는 말
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

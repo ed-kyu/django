@@ -7,7 +7,7 @@ urlpatterns = [
     # articles/ +
     path('create/', views.create, name='create'),
     path('', views.index, name='index'),
-    path('<int:pk>/', views.detail, name='detail'),
-    path('<int:pk>/update/', views.update, name='update'),
-    path('<int:pk>/delete/', views.delete, name='delete'),
+    path('<int:article_pk>/', views.detail, name='detail'),
+    path('<int:article_pk>/update/', views.update, name='update'),
+    path('<int:article_pk>/delete/', views.delete, name='delete'),
 ]

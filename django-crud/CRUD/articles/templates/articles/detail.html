@@ -4,23 +4,29 @@
 
 <h1>Detail</h1>
 
-<h2>글 번호: {{ article.pk }}</h2>
+{% comment %} <h2>글 번호: {{ article.pk }}</h2> {% endcomment %}
 <h2>글 제목: {{ article.title }}</h2>
 
-<h4>글 내용: {{ article.content }}</h4>
-
-<h5>글 생성시각: {{ article.created_at }}</h5>
-<h5>글 수정시각: {{ article.updated_at }}</h5>
+<p>글 내용: {{ article.content }}</p>
 
 <div>
-<a href="{% url 'articles:update' article.pk %}">
-  <button>Edit</button>
+  <img src="{{ article.image.url }}" alt="{{ article.image }}">
+  {% comment %} /media/{{ article.image.url }}\라고 쓸 필요 X {% endcomment %}
+</div>
+
+<p>글 생성시각: {{ article.created_at }}</p>
+<p>글 수정시각: {{ article.updated_at }}</p>
+
+<hr>
+<div>
+<a href="{% url 'articles:update' article.pk %}" class='btn btn-primary'>
+  Edit
 </a>
 </div>
-<form action="{% url 'articles:delete' article.pk %}" method="POST">
+<form action="{% url 'articles:delete' article.pk %}" method="POST" class='btn btn-warning'>
   {% csrf_token %}
-  <button>Delete</button>
+  Delete
 </form>
 
 <a href="{% url 'articles:index' %}">BACK</a>
-{% endblock %}
+{% endblock content %}
