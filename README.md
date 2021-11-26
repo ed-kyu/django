@@ -1,6 +1,7 @@
-# Django
+# 웹 프로젝트
 
-Django tutorial project로 코드를 간단하게 짜보는 곳
+백엔드 Django
+프론트엔드 Vue.js
 
 ## Reference
 https://docs.djangoproject.com/ko/3.2/intro/
